@@ -4,15 +4,17 @@ import (
 	"fmt"
 )
 
-func (u *User) AddList(name string) {
+func (u *User) AddList(name string) *TodoList {
 	list := &TodoList{
-		id:        u.listCount,
-		name:      name,
+		Id:        u.listCount,
+		Name:      name,
 		taskCount: 0,
 		tasks:     make(map[int]*Task),
 	}
 	u.listCount++
-	u.lists[list.id] = list
+	u.lists[list.Id] = list
+
+	return list
 }
 
 func (u *User) RenameList(id int, name string) (*TodoList, error) {
@@ -21,7 +23,7 @@ func (u *User) RenameList(id int, name string) (*TodoList, error) {
 		return nil, fmt.Errorf("no list with id %d", id)
 	}
 
-	list.name = name
+	list.Name = name
 	return list, nil
 }
 
@@ -32,6 +34,16 @@ func (u *User) GetList(id int) (*TodoList, error) {
 	}
 
 	return list, nil
+}
+
+func (u *User) GetLists() []*TodoList {
+	lists := make([]*TodoList, 0, len(u.lists))
+
+	for _, v := range u.lists {
+		lists = append(lists, v)
+	}
+
+	return lists
 }
 
 func (u *User) DeleteList(id int) error {

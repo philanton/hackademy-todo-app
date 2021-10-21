@@ -5,22 +5,22 @@ type UserStorage struct {
 }
 
 type User struct {
-	email          string
-	passwordDigest string
+	Email          string
+	PasswordDigest string
 	listCount      int
 	lists          map[int]*TodoList
 }
 
 type TodoList struct {
-	id        int
-	name      string
+	Id        int    `json:"id"`
+	Name      string `json:"name"`
 	taskCount int
 	tasks     map[int]*Task
 }
 
 type Task struct {
-	id          int
-	name        string
-	description string
-	status      bool
+	Id          int    `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Status      bool   `json:"status"`
 }

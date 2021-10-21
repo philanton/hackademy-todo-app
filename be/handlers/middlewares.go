@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	privkeyPath = "./keys/privkey.rsa"
-	pubkeyPath  = "./keys/pubkey.rsa"
+	privkeyPath = "./privkey.rsa"
+	pubkeyPath  = "./pubkey.rsa"
 )
 
 func TodoServiceMiddleware() gin.HandlerFunc {
@@ -45,7 +45,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		c.Set("auth", &auth)
+		c.Set("auth", &authData)
 		c.Next()
 	}
 }

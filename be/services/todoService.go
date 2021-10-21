@@ -22,8 +22,8 @@ func (us *UserStorage) AddUser(email string, password string) error {
 	}
 
 	us.users[email] = &User{
-		email:          email,
-		passwordDigest: string(md5.New().Sum([]byte(password))),
+		Email:          email,
+		PasswordDigest: string(md5.New().Sum([]byte(password))),
 		listCount:      0,
 		lists:          make(map[int]*TodoList),
 	}
