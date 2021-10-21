@@ -27,7 +27,7 @@ func RegisterUser(c *gin.Context) {
 	}
 
 	if err := todoService.AddUser(params.Email, params.Password); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 

@@ -13,9 +13,11 @@ func main() {
 func setupRouter() *gin.Engine {
 	r := gin.Default()
 
+	r.Use(handlers.CORSMiddleware())
 	r.Use(handlers.TodoServiceMiddleware())
 	r.POST("/user/signup", handlers.RegisterUser)
 	r.POST("/user/signin", handlers.LoginUser)
+	r.GET("/user/me", handlers.GetUser)
 
 	pr := r.Group("/todo", handlers.AuthMiddleware())
 	pr.POST("/lists", handlers.CreateTodoList)
