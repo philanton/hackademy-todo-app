@@ -1,0 +1,59 @@
+kind: pipeline
+name: backend
+
+steps:
+- name: verify & build
+  image: golang
+  commands:
+  - cd be
+  - go vet ./...
+  - go build ./cmd/main.go
+  when:
+    branch:
+      include:
+      - main
+- name: build docker image
+  image: plugins/docker
+  settings:
+    username: philanton
+    password:
+      from_secret: docker_password
+    repo: philanton/todo-be
+    dockerfile: be/Dockerfile
+    context: be
+    tags:
+      - ${DRONE_COMMIT:0:7}
+
+trigger:
+  event:
+  - push
+---
+kind: pipeline
+name: frontend
+
+steps:
+- name: verify & build
+  image: node
+  commands:
+  - cd fe
+  - npm install
+  - npm run build
+  when:
+    branch:
+      include:
+      - main
+- name: build docker image
+  image: plugins/docker
+  settings:
+    username: philanton
+    password:
+      from_secret: docker_password
+    repo: philanton/todo-fe
+    dockerfile: fe/Dockerfile
+    context: fe
+    tags:
+      - ${DRONE_COMMIT:0:7}
+
+trigger:
+  event:
+  - push
