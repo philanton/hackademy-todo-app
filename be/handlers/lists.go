@@ -14,7 +14,7 @@ type listParams struct {
 func CreateTodoList(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -31,7 +31,7 @@ func CreateTodoList(c *gin.Context) {
 func GetTodoList(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -43,7 +43,7 @@ func GetTodoList(c *gin.Context) {
 
 	list, err := user.GetList(listId)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -53,7 +53,7 @@ func GetTodoList(c *gin.Context) {
 func RenameTodoList(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -71,7 +71,7 @@ func RenameTodoList(c *gin.Context) {
 
 	list, err := user.RenameList(listId, params.Name)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -81,7 +81,7 @@ func RenameTodoList(c *gin.Context) {
 func DeleteTodoList(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -93,7 +93,7 @@ func DeleteTodoList(c *gin.Context) {
 
 	err = user.DeleteList(listId)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -103,7 +103,7 @@ func DeleteTodoList(c *gin.Context) {
 func GetTodoLists(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 

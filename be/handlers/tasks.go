@@ -21,7 +21,7 @@ type updateTaskParams struct {
 func CreateTodoTask(c *gin.Context) {
 	list, err := GetListService(c)
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -38,7 +38,7 @@ func CreateTodoTask(c *gin.Context) {
 func GetTodoTask(c *gin.Context) {
 	list, err := GetListService(c)
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -50,7 +50,7 @@ func GetTodoTask(c *gin.Context) {
 
 	task, err := list.GetTask(taskId)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -60,7 +60,7 @@ func GetTodoTask(c *gin.Context) {
 func UpdateTodoTask(c *gin.Context) {
 	list, err := GetListService(c)
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -78,7 +78,7 @@ func UpdateTodoTask(c *gin.Context) {
 
 	task, err := list.UpdateTask(taskId, params.Name, params.Description, params.Status)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -88,7 +88,7 @@ func UpdateTodoTask(c *gin.Context) {
 func DeleteTodoTask(c *gin.Context) {
 	list, err := GetListService(c)
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -100,7 +100,7 @@ func DeleteTodoTask(c *gin.Context) {
 
 	err = list.DeleteTask(taskId)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": err})
+		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -110,7 +110,7 @@ func DeleteTodoTask(c *gin.Context) {
 func GetTodoTasks(c *gin.Context) {
 	list, err := GetListService(c)
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, gin.H{"error": err.Error()})
 		return
 	}
 

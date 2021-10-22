@@ -16,7 +16,7 @@ type userParams struct {
 func RegisterUser(c *gin.Context) {
 	todoService, err := GetTodoService(c)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -37,7 +37,7 @@ func RegisterUser(c *gin.Context) {
 func LoginUser(c *gin.Context) {
 	todoService, err := GetTodoService(c)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 

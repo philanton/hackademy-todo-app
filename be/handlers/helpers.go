@@ -12,7 +12,7 @@ import (
 func GetTodoService(c *gin.Context) (svc.TodoService, error) {
 	todoService, ok := c.Get("todo")
 	if !ok {
-		return nil, fmt.Errorf("Todo service is not found")
+		return nil, fmt.Errorf("todo service is not found")
 	}
 
 	return todoService.(svc.TodoService), nil
@@ -21,7 +21,7 @@ func GetTodoService(c *gin.Context) (svc.TodoService, error) {
 func GetAuth(c *gin.Context) (*auth.Auth, error) {
 	authData, ok := c.Get("auth")
 	if !ok {
-		return nil, fmt.Errorf("Auth is not found")
+		return nil, fmt.Errorf("auth is not found")
 	}
 
 	return authData.(*auth.Auth), nil

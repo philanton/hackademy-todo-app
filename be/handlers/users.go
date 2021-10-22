@@ -9,7 +9,7 @@ import (
 func GetUser(c *gin.Context) {
 	user, err := GetUserService(c)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
