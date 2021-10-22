@@ -21,8 +21,6 @@ steps:
     repo: philanton/todo-be
     dockerfile: be/Dockerfile
     context: be
-    tags:
-      - ${DRONE_COMMIT:0:7}
 
 trigger:
   event:
@@ -51,8 +49,6 @@ steps:
     repo: philanton/todo-fe
     dockerfile: fe/Dockerfile
     context: fe
-    tags:
-      - ${DRONE_COMMIT:0:7}
 
 trigger:
   event:

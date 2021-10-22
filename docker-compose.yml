@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  todo-be:
+    image: "philanton/todo-be"
+    networks:
+    - todo-net
+    ports:
+    - 8080:8080
+  todo-fe:
+    image: "philanton/todo-fe"
+    networks:
+    - todo-net
+    ports:
+    - 3000:3000
+
+networks:
+  todo-net:
+    driver: bridge
