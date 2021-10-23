@@ -49,7 +49,7 @@ func LoginUser(c *gin.Context) {
 
 	user, err := todoService.GetUser(params.Email)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -66,7 +66,7 @@ func LoginUser(c *gin.Context) {
 
 	token, err := auth.ForgeToken("empty", params.Email, "empty", 0, keys.PrivateKey, nil)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 

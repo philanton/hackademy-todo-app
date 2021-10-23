@@ -25,9 +25,8 @@ export default function LoginPage() {
     }
 
     userService.registerUser(email, password).then(data => {
-      console.log(data);
       router.push('/login')
-    }).catch(() => alert("User with given email already exists"))
+    }).catch((error) => alert(error.response.data.error))
   }
 
   return (
